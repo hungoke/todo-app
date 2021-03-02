@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
+import ClearCompleted from './ClearCompleted'
 import Status from './Status'
 
-class StatusList extends Component {
+class ToolsOfApp extends Component {
   changeStatus = status => {
     this.props.changeStatus(status)
+  }
+
+  clearCompleted = () => {
+    this.props.clearCompleted()
   }
 
   render() {
@@ -17,6 +22,7 @@ class StatusList extends Component {
           currentStatus={currentStatus}
           changeStatus={this.changeStatus}
         />
+
         {
           status.map(status => (
             <Status
@@ -27,9 +33,13 @@ class StatusList extends Component {
             />
           ))
         }
+
+        <ClearCompleted
+          clearCompleted={this.clearCompleted}
+        />
       </div>
     )
   }
 }
 
-export default StatusList
+export default ToolsOfApp

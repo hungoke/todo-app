@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import ToolsOfApp from '../toolsOfApp/ToolsOfApp'
 import Task from './Task'
 
 class TasksList extends Component {
-  filteredByTag = () => {
+  get filteredByTag() {
     const { currentTag, tasks } = this.props
+
     if (currentTag === 0) {
       return tasks
     }
@@ -11,15 +13,15 @@ class TasksList extends Component {
     return tasks.filter(task => task.tag === currentTag)
   }
 
-  filteredByStatus = () => {
+  get filteredByTagAndStatus() {
     const { status, currentStatus } = this.props
     const getStatus = status.find(status => status.id === currentStatus)
 
     if (currentStatus === 0) {
-      return this.filteredByTag()
+      return this.filteredByTag
     }
 
-    return this.filteredByTag().filter(task => task.completed === getStatus.completed)
+    return this.filteredByTag.filter(task => task.completed === getStatus.completed)
   }
 
   deleteTask = task => {
@@ -30,12 +32,20 @@ class TasksList extends Component {
     this.props.completeTask(task)
   }
 
+  changeStatus = status => {
+    this.props.changeStatus(status)
+  }
+
+  clearCompleted = () => {
+    this.props.clearCompleted(this.filteredByTagAndStatus)
+  }
 
   render() {
+    const { status, currentStatus } = this.props
     return (
       <div>
         {
-          this.filteredByStatus().map((task, index) => (
+          this.filteredByTagAndStatus.map((task, index) => (
             <Task
               key={index}
               task={task}
@@ -44,6 +54,13 @@ class TasksList extends Component {
             />
           ))
         }
+
+        <ToolsOfApp
+          status={status}
+          currentStatus={currentStatus}
+          changeStatus={this.changeStatus}
+          clearCompleted={this.clearCompleted}
+        />
       </div>
     )
   }
