@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ClearCompleted from './ClearCompleted'
+import CounterCompleted from './CounterCompleted'
 import Status from './Status'
 
 class ToolsOfApp extends Component {
@@ -12,7 +13,7 @@ class ToolsOfApp extends Component {
   }
 
   render() {
-    const { status, currentStatus } = this.props
+    const { status, currentStatus, totalTasks, totalTasksCompleted } = this.props
 
     return (
       <div>
@@ -36,6 +37,11 @@ class ToolsOfApp extends Component {
 
         <ClearCompleted
           clearCompleted={this.clearCompleted}
+        />
+
+        <CounterCompleted
+          totalTasks={totalTasks}
+          totalTasksCompleted={totalTasksCompleted}
         />
       </div>
     )

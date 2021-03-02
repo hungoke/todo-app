@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { tasks } from '../../constants/tasks'
 import AddNewTask from './insert/AddNewTask'
-import TagsList from './tags/TagsList'
+import Tags from './tags/Tags'
 import TasksList from './tasks/TasksList'
 
 class TodoApp extends Component {
@@ -23,6 +23,12 @@ class TodoApp extends Component {
   changeCurrentTag = tag => {
     this.setState({
       currentTag: tag.id
+    })
+  }
+
+  changeStatus = newStatus => {
+    this.setState({
+      currentStatus: newStatus.id
     })
   }
 
@@ -50,12 +56,6 @@ class TodoApp extends Component {
     })
   }
 
-  changeStatus = newStatus => {
-    this.setState({
-      currentStatus: newStatus.id
-    })
-  }
-
   clearCompleted = arrayTask => {
     arrayTask.forEach(task => {
       task.completed = false
@@ -75,7 +75,7 @@ class TodoApp extends Component {
           addNewTask={this.addNewTask}
         />
 
-        <TagsList
+        <Tags
           tags={tags}
           currentTag={currentTag}
           changeCurrentTag={this.changeCurrentTag}

@@ -9,19 +9,20 @@ class TasksList extends Component {
     if (currentTag === 0) {
       return tasks
     }
-
     return tasks.filter(task => task.tag === currentTag)
   }
 
   get filteredByTagAndStatus() {
-    const { status, currentStatus } = this.props
-    const getStatus = status.find(status => status.id === currentStatus)
+    const { currentStatus } = this.props
 
-    if (currentStatus === 0) {
-      return this.filteredByTag
+    switch (currentStatus) {
+      case 1:
+        return this.filteredByTag.filter(task => task.completed === false)
+      case 2:
+        return this.filteredByTag.filter(task => task.completed === true)
+      default:
+        return this.filteredByTag
     }
-
-    return this.filteredByTag.filter(task => task.completed === getStatus.completed)
   }
 
   deleteTask = task => {
@@ -40,8 +41,15 @@ class TasksList extends Component {
     this.props.clearCompleted(this.filteredByTagAndStatus)
   }
 
+  counter = () => {
+    const tasksCompleted = this.filteredByTagAndStatus.filter(task => task.completed === true)
+
+    return tasksCompleted.length
+  }
+
   render() {
     const { status, currentStatus } = this.props
+
     return (
       <div>
         {
@@ -60,6 +68,8 @@ class TasksList extends Component {
           currentStatus={currentStatus}
           changeStatus={this.changeStatus}
           clearCompleted={this.clearCompleted}
+          totalTasks={this.filteredByTagAndStatus.length}
+          totalTasksCompleted={this.counter()}
         />
       </div>
     )

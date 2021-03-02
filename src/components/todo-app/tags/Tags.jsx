@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Tag from './Tag'
 
-class TagsList extends Component {
+class Tags extends Component {
   changeCurrentTag = tag => {
     this.props.changeCurrentTag(tag)
   }
@@ -35,4 +35,4 @@ class TagsList extends Component {
   }
 }
 
-export default TagsList
+export default Tags
