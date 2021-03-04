@@ -1,6 +1,5 @@
 import React from 'react'
-import { TodoAppContext } from './../../../context/TodoAppContext'
-import Tag from './Tag'
+import { TodoAppContext } from '../../../context/TodoAppContext'
 
 class Tags extends React.Component {
   render() {
@@ -9,18 +8,31 @@ class Tags extends React.Component {
         {
           todoAppContext => (
             <>
-              {
-                <Tag
-                  key={0}
-                  tag={{ id: 0, name: 'All tags' }}
-                />
-              }
+              <span>
+                <label>
+                  <input
+                    type="radio"
+                    name="tag"
+                    checked={todoAppContext.currentTag === 0}
+                    onChange={() => todoAppContext.changeCurrentTag(0)}
+                  />
+                  All tag
+                </label>
+              </span>
+
               {
                 todoAppContext.tags.map(tag => (
-                  <Tag
-                    key={tag.id}
-                    tag={tag}
-                  />
+                  <span>
+                    <label>
+                      <input
+                        type="radio"
+                        name="tag"
+                        checked={tag.id === todoAppContext.currentTag}
+                        onChange={() => todoAppContext.changeCurrentTag(tag.id)}
+                      />
+                      {tag.name}
+                    </label>
+                  </span>
                 ))
               }
             </>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { TodoAppContext } from '../../context/TodoAppContext'
+import Header from '../header/Header'
 import { tasks } from './../../constants/tasks'
 import Tags from './Tags/Tags'
 import TasksList from './Tasks/TasksList'
@@ -36,6 +37,8 @@ class TodoApp extends React.Component {
 
     return (
       <>
+        <Header />
+
         <TodoAppContext.Provider value={{ ...contextValue, changeCurrentTag: this.changeCurrentTag }}>
           <Tags />
           <TasksList />
