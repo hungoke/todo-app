@@ -1,9 +1,9 @@
 import React from 'react'
 import { TodoAppContext } from '../../context/TodoAppContext'
-import Header from '../header/Header'
 import { tasks } from './../../constants/tasks'
-import Tags from './Tags/Tags'
-import TasksList from './Tasks/TasksList'
+import AddNewTask from './AddNewTask'
+import Tags from './Tags'
+import Tasks from './Tasks'
 
 class TodoApp extends React.Component {
   state = {
@@ -32,16 +32,61 @@ class TodoApp extends React.Component {
     })
   }
 
+  completedTask = task => {
+    const completedTask = tasks.find(element => element.id === task.id)
+    completedTask.completed = !completedTask.completed
+
+    this.setState({
+      contextValue: {
+        ...this.state.contextValue,
+        tasks: [...tasks]
+      }
+    })
+  }
+
+  deleteTask = deleteTask => {
+    const indexOfTask = tasks.findIndex(task => task.id === deleteTask.id)
+    tasks.splice(indexOfTask, 1)
+
+    this.setState({
+      contextValue: {
+        ...this.state.contextValue,
+        tasks: [...tasks]
+      }
+    })
+  }
+
+  addNewTask = newTask => {
+    tasks.unshift(newTask)
+
+    this.setState({
+      contextValue: {
+        ...this.state.contextValue,
+        tasks: [...tasks]
+      }
+    })
+  }
+
   render() {
     const { contextValue } = this.state
 
     return (
       <>
-        <Header />
+        <TodoAppContext.Provider
+          value={
+            {
+              ...contextValue,
+              changeCurrentTag: this.changeCurrentTag,
+              completedTask: this.completedTask,
+              deleteTask: this.deleteTask,
+              addNewTask: this.addNewTask
+            }
+          }
+        >
 
-        <TodoAppContext.Provider value={{ ...contextValue, changeCurrentTag: this.changeCurrentTag }}>
+          <AddNewTask />
           <Tags />
-          <TasksList />
+          <Tasks />
         </TodoAppContext.Provider>
       </>
     )
