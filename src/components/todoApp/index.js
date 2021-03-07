@@ -25,44 +25,12 @@ class TodoApp extends React.Component {
 
 
   changeCurrentTag = newCurrentTag => {
-    // this.setState({
-    //   contextValue: {
-    //     ...this.state.contextValue,
-    //     currentTag: newCurrentTag
-    //   }
-    // })
-    console.log(newCurrentTag)
     this.setState({
       contextValue: {
         ...this.state.contextValue,
         currentTag: newCurrentTag
       }
     })
-    const { tasks, currentTag, tags } = this.state.contextValue
-    let tagName = ''
-
-    if (currentTag === 0) {
-      this.setState({
-        contextValue: {
-          ...this.state.contextValue,
-          tasks: [...tasks]
-        }
-      })
-    } else {
-      tags.forEach(tag => {
-        if (tag.id === currentTag) {
-          tagName = tag.name
-        }
-      })
-
-      tasks.filter(task => task.tag === tagName)
-      this.setState({
-        contextValue: {
-          ...this.state.contextValue,
-          tasks: [...tasks]
-        }
-      })
-    }
   }
 
   completedTask = task => {

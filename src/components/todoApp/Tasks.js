@@ -4,29 +4,32 @@ import './../../App.css'
 import Task from './Task'
 
 class Tasks extends React.Component {
-  // get filterByTag() {
-  //   const { tasks, currentTag, tags } = this.context
-  //   let tagName = ''
+  get filteredByTag() {
+    const { tasks, currentTag, tags } = this.context
+    let tagName = ''
 
-  //   if (currentTag === 0) {
-  //     return tasks
-  //   } else {
-  //     tags.forEach(tag => {
-  //       if (tag.id === currentTag) {
-  //         tagName = tag.name
-  //       }
-  //     })
-  //   }
+    if (currentTag === 0) {
+      return tasks
+    } else {
+      tags.forEach(tag => {
+        if (tag.id === currentTag) {
+          tagName = tag.name
+        }
+      })
+    }
 
-  //   return tasks.filter(task => task.tag === tagName)
-  // }
+    return tasks.filter(task => task.tag === tagName)
+  }
+
+  get filteredByTagAndStatus() {
+
+  }
 
   render() {
-    const { tasks } = this.context
     return (
       <>
         {
-          tasks.map(task => (
+          this.filterByTag.map(task => (
             <Task
               key={task.id}
               task={task}
