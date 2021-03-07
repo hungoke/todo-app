@@ -78,7 +78,9 @@ class TodoApp extends React.Component {
   }
 
   clearCompleted = tasksListCompleted => {
-    tasks.find(task => )
+    tasksListCompleted.forEach(task => {
+      task.completed = false
+    })
 
     this.setState({
       contextValue: {

@@ -36,21 +36,26 @@ class Tasks extends React.Component {
     }
   }
 
-  clearCompleted = () => {
-    const { tasks } = this.context
+  count = () => {
+    let count = 0
 
+    this.filteredByTag.forEach(task => {
+      if (task.completed === true) {
+        count++
+      }
+    })
+
+    return count
   }
 
   render() {
     return (
       <TasksListContext.Provider
-        value={
-          {
-            ...this.filteredByTagAndStatus,
-            clearCompleted: this.clearCompleted
-          }
-        }
-      >
+        value={{
+          filteredTasks: this.filteredByTagAndStatus,
+          totalTasks: this.filteredByTag.length,
+          totalTasksCompleted: this.count()
+        }}>
         {
           this.filteredByTagAndStatus.map(task => (
             <Task

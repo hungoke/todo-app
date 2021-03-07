@@ -26,9 +26,13 @@ class ToolsOfApp extends React.Component {
               <TasksListContext.Consumer>
                 {
                   tasksListContext => (
-                    <button onClick={() => { todoAppContext.clearCompleted(tasksListContext) }}>
-                      Clear completed
-                    </button>
+                    <>
+                      <button onClick={() => { todoAppContext.clearCompleted(tasksListContext.filteredTasks) }}>
+                        Clear completed
+                      </button>
+
+                      <span>{tasksListContext.totalTasksCompleted}/{tasksListContext.totalTasks} completed</span>
+                    </>
                   )
                 }
               </TasksListContext.Consumer>
