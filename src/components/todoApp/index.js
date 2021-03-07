@@ -16,8 +16,8 @@ class TodoApp extends React.Component {
       ],
       currentTag: 0,
       status: [
-        { id: 1, completed: true, name: 'completed' },
-        { id: 2, completed: false, name: 'active' }
+        { id: 1, completed: true, name: 'Completed' },
+        { id: 2, completed: false, name: 'Active' }
       ],
       currentStatus: 0
     }
@@ -68,6 +68,26 @@ class TodoApp extends React.Component {
     })
   }
 
+  changeCurrentStatus = statusId => {
+    this.setState({
+      contextValue: {
+        ...this.state.contextValue,
+        currentStatus: statusId
+      }
+    })
+  }
+
+  clearCompleted = tasksListCompleted => {
+    tasks.find(task => )
+
+    this.setState({
+      contextValue: {
+        ...this.state.contextValue,
+        task: [...tasks]
+      }
+    })
+  }
+
   render() {
     const { contextValue } = this.state
 
@@ -81,6 +101,8 @@ class TodoApp extends React.Component {
               completedTask: this.completedTask,
               deleteTask: this.deleteTask,
               addNewTask: this.addNewTask,
+              changeCurrentStatus: this.changeCurrentStatus,
+              clearCompleted: this.clearCompleted
             }
           }
         >

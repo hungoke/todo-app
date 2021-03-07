@@ -1,4 +1,6 @@
 import React from 'react'
+import TasksListContext from '../../context/TasksListContext'
+import ToolsOfApp from './ToolsOfApp'
 import { TodoAppContext } from '../../context/TodoAppContext'
 import './../../App.css'
 import Task from './Task'
@@ -22,21 +24,43 @@ class Tasks extends React.Component {
   }
 
   get filteredByTagAndStatus() {
+    const { currentStatus } = this.context
+
+    switch (currentStatus) {
+      case 1:
+        return this.filteredByTag.filter(task => task.completed === true)
+      case 2:
+        return this.filteredByTag.filter(task => task.completed === false)
+      default:
+        return this.filteredByTag
+    }
+  }
+
+  clearCompleted = () => {
+    const { tasks } = this.context
 
   }
 
   render() {
     return (
-      <>
+      <TasksListContext.Provider
+        value={
+          {
+            ...this.filteredByTagAndStatus,
+            clearCompleted: this.clearCompleted
+          }
+        }
+      >
         {
-          this.filterByTag.map(task => (
+          this.filteredByTagAndStatus.map(task => (
             <Task
               key={task.id}
               task={task}
             />
           ))
         }
-      </>
+        <ToolsOfApp />
+      </TasksListContext.Provider>
     )
   }
 }
