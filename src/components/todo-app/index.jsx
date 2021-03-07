@@ -21,6 +21,7 @@ class TodoApp extends Component {
   }
 
   changeCurrentTag = tag => {
+    const { currentTag } = this.state
     this.setState({
       currentTag: tag.id
     })
@@ -67,7 +68,7 @@ class TodoApp extends Component {
   }
 
   render() {
-    const { tags, currentTag, status, currentStatus } = this.state
+    const { tags, currentTag, status, currentStatus, tasks } = this.state
     return (
       <div>
         <AddNewTask

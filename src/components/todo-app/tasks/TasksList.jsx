@@ -48,7 +48,7 @@ class TasksList extends Component {
   }
 
   render() {
-    const { status, currentStatus } = this.props
+    const { status, currentStatus, tasks } = this.props
 
     return (
       <div>
