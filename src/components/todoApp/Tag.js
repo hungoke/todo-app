@@ -7,21 +7,19 @@ class Tag extends React.Component {
 
     return (
       <TodoAppContext.Consumer>
-        {
-          todoAppContext => (
-            <span>
-              <label>
-                <input
-                  type="radio"
-                  name="tag"
-                  checked={tag.id === todoAppContext.currentTag}
-                  onChange={() => { todoAppContext.changeCurrentTag(tag.id) }}
-                />
-                {tag.name}
-              </label>
-            </span>
-          )
-        }
+        {todoAppContext => (
+          <span>
+            <label>
+              <input
+                type="radio"
+                name="tag"
+                checked={tag.id === todoAppContext.currentTag}
+                onChange={() => { todoAppContext.changeCurrentTag(tag.id) }}
+              />
+              {tag.name}
+            </label>
+          </span>
+        )}
       </TodoAppContext.Consumer>
     )
   }

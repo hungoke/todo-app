@@ -7,38 +7,31 @@ class ToolsOfApp extends React.Component {
   render() {
     return (
       <TodoAppContext.Consumer>
-        {
-          todoAppContext => (
-            <div>
+        {todoAppContext => (
+          <div>
+            <Status
+              key={0}
+              status={{ id: 0, name: 'All tasks' }}
+            />
+            {todoAppContext.status.map(status => (
               <Status
-                key={0}
-                status={{ id: 0, name: 'All tasks' }}
+                key={status.id}
+                status={status}
               />
-
-              {
-                todoAppContext.status.map(status => (
-                  <Status
-                    key={status.id}
-                    status={status}
-                  />
-                ))
-              }
-              <TasksListContext.Consumer>
-                {
-                  tasksListContext => (
-                    <>
-                      <button onClick={() => { todoAppContext.clearCompleted(tasksListContext.filteredTasks) }}>
-                        Clear completed
+            ))}
+            <TasksListContext.Consumer>
+              {tasksListContext => (
+                <>
+                  <button onClick={() => { todoAppContext.clearCompleted(tasksListContext.filteredTasks) }}>
+                    Clear completed
                       </button>
 
-                      <span>{tasksListContext.totalTasksCompleted}/{tasksListContext.totalTasks} completed</span>
-                    </>
-                  )
-                }
-              </TasksListContext.Consumer>
-            </div>
-          )
-        }
+                  <span>{tasksListContext.totalTasksCompleted}/{tasksListContext.totalTasks} completed</span>
+                </>
+              )}
+            </TasksListContext.Consumer>
+          </div>
+        )}
       </TodoAppContext.Consumer>
     )
   }

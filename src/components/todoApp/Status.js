@@ -7,21 +7,19 @@ class Status extends React.Component {
 
     return (
       <TodoAppContext.Consumer>
-        {
-          todoAppContext => (
-            <span>
-              <label>
-                <input
-                  type="radio"
-                  name="status"
-                  checked={todoAppContext.currentStatus === status.id}
-                  onChange={() => { todoAppContext.changeCurrentStatus(status.id) }}
-                />
-                {status.name}
-              </label>
-            </span>
-          )
-        }
+        {todoAppContext => (
+          <span>
+            <label>
+              <input
+                type="radio"
+                name="status"
+                checked={todoAppContext.currentStatus === status.id}
+                onChange={() => { todoAppContext.changeCurrentStatus(status.id) }}
+              />
+              {status.name}
+            </label>
+          </span>
+        )}
       </TodoAppContext.Consumer>
     )
   }

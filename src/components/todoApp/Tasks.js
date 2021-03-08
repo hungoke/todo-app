@@ -55,7 +55,8 @@ class Tasks extends React.Component {
           filteredTasks: this.filteredByTagAndStatus,
           totalTasks: this.filteredByTag.length,
           totalTasksCompleted: this.count()
-        }}>
+        }}
+      >
         {
           this.filteredByTagAndStatus.map(task => (
             <Task
@@ -64,6 +65,7 @@ class Tasks extends React.Component {
             />
           ))
         }
+
         <ToolsOfApp />
       </TasksListContext.Provider>
     )
