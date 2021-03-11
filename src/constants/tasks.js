@@ -1,4 +1,4 @@
-import { uuid } from 'uuid'
+import { uuid } from 'react-uuid'
 
 export const tasks = [
   {
