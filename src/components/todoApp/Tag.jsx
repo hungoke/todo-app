@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Tag = props => {
+function Tag(props) {
   return (
     <>
       <span>

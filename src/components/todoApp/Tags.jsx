@@ -1,8 +1,7 @@
 import React from 'react'
 import Tag from './Tag'
 
-const Tags = props => {
-  const { tagsList, currentTag } = props
+function Tags(props) {
   return (
     <>
       <Tag
@@ -13,7 +12,7 @@ const Tags = props => {
       />
 
       {
-        props.tagsList.map(tag => (
+        props.tags.map(tag => (
           <Tag
             key={tag.id}
             tag={tag}

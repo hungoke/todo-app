@@ -1,27 +1,36 @@
-import React, { useState } from 'react'
-import { tasks } from './../../constants/tasks'
-import { tags } from './../../constants/tags'
-import Tasks from './Tasks'
-import Tags from './Tags'
+import React, { useState } from "react"
+import { tasks } from "./../../constants/tasks"
+import { tags } from "./../../constants/tags"
+import Tasks from "./Tasks"
+import Tags from "./Tags"
 
-const TodoApp = () => {
+function TodoApp() {
   const [tasksList, setTasksList] = useState(tasks)
-  const [tagsList, setTagsList] = useState(tags)
   const [currentTag, setCurrentTag] = useState(0)
+  const status = [
+    { id: 1, name: 'Active', completed: false },
+    { id: 2, name: 'Completed', completed: true },
+  ]
 
-  const changeStatusTask = task => {
+  const changeStatusTask = (task) => {
     task.completed = !task.completed
     setTasksList([...tasksList])
   }
 
-  const changeCurrentTag = tag => {
+  const changeCurrentTag = (tag) => {
     setCurrentTag(tag.id)
+  }
+
+  const deleteTask = (taskDelete) => {
+    const indexOfTask = tasksList.findIndex(task => task.id === taskDelete.id)
+    tasksList.splice(indexOfTask, 1)
+    setTasksList([...tasksList])
   }
 
   return (
     <>
       <Tags
-        tagsList={tagsList}
+        tags={tags}
         currentTag={currentTag}
         changeCurrentTagIndex={changeCurrentTag}
       />
@@ -30,6 +39,7 @@ const TodoApp = () => {
         tasksList={tasksList}
         currentTag={currentTag}
         changeStatusIndex={changeStatusTask}
+        deleteTaskIndex={deleteTask}
       />
     </>
   )

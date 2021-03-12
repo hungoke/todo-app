@@ -1,7 +1,7 @@
 import React from 'react'
 import Task from './Task'
 
-const Tasks = props => {
+function Tasks(props) {
   const { tasksList, currentTag } = props
   const filteredTaskByTag = () => {
     if (currentTag === 0) {
@@ -19,6 +19,7 @@ const Tasks = props => {
             key={task.id}
             task={task}
             changeStatusTasks={() => { props.changeStatusIndex(task) }}
+            deleteTask={() => { props.deleteTaskIndex(task) }}
           />
         ))
       }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Task = props => {
+function Task(props) {
 
   return (
     <>
@@ -14,7 +14,7 @@ const Task = props => {
           {props.task.name}
         </label>
 
-        <button>X</button>
+        <button onClick={() => { props.deleteTask(props.task) }}>X</button>
       </div>
     </>
   )
