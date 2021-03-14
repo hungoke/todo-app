@@ -1,4 +1,5 @@
 import React from 'react'
+import './../../scss/index.scss'
 import { TodoAppContext } from '../../context/TodoAppContext'
 import { tasks } from './../../constants/tasks'
 import AddNewTask from './AddNewTask'
@@ -94,26 +95,29 @@ class TodoApp extends React.Component {
     const { contextValue } = this.state
 
     return (
-      <>
-        <TodoAppContext.Provider
-          value={
-            {
-              ...contextValue,
-              changeCurrentTag: this.changeCurrentTag,
-              completedTask: this.completedTask,
-              deleteTask: this.deleteTask,
-              addNewTask: this.addNewTask,
-              changeCurrentStatus: this.changeCurrentStatus,
-              clearCompleted: this.clearCompleted
+      <div className="container">
+        <h2>REACT TODO APP</h2>
+        <div className="main">
+          <TodoAppContext.Provider
+            value={
+              {
+                ...contextValue,
+                changeCurrentTag: this.changeCurrentTag,
+                completedTask: this.completedTask,
+                deleteTask: this.deleteTask,
+                addNewTask: this.addNewTask,
+                changeCurrentStatus: this.changeCurrentStatus,
+                clearCompleted: this.clearCompleted
+              }
             }
-          }
-        >
+          >
 
-          <AddNewTask />
-          <Tags />
-          <Tasks />
-        </TodoAppContext.Provider>
-      </>
+            <AddNewTask />
+            <Tags />
+            <Tasks />
+          </TodoAppContext.Provider>
+        </div>
+      </div>
     )
   }
 }

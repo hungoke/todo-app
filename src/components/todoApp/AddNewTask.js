@@ -62,16 +62,18 @@ class AddNewTask extends React.Component {
 
     return (
       <div>
-        <form onSubmit={this.addNewTask}>
+        <form className="form-add-new-task" onSubmit={this.addNewTask}>
           <input
+            className="add-new-task__input"
             type="text"
             placeholder="What do you to do?"
             value={name}
             onChange={this.onChangeName}
           />
 
-          <button onClick={this.addNewTask}>+</button>
+          <button className="button-add-new-task" onClick={this.addNewTask}>+</button>
         </form>
+        <hr />
       </div>
     )
   }
